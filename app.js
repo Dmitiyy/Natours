@@ -7,6 +7,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const AppError = require('./utils/appError');
@@ -55,6 +56,8 @@ app.use(
     ],
   })
 );
+
+app.use(compression());
 
 app.use((request, response, next) => {
   request.requestTime = new Date().toISOString();
